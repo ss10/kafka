@@ -159,6 +159,19 @@ object MirrorMaker extends Logging with KafkaMetricsGroup {
         .ofType(classOf[String])
         .defaultsTo("true")
 
+     val targetTopicOpt = parser.accepts("targetTopic",
+        "Target topic to mirror.")
+        .withRequiredArg()
+        .describedAs("Java regex (String)")
+        .ofType(classOf[String])
+
+      val targetPartitions = parser.accepts("partitions",
+        "Subscribed partitions to mirror.")
+        .withRequiredArg()
+        .describedAs("Java regex (String)")
+        .ofType(classOf[String])
+
+
       val helpOpt = parser.accepts("help", "Print this message.")
 
       if (args.length == 0)
